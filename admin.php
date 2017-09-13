@@ -30,7 +30,9 @@ else{
 
 <body>
 <?PHP
+if(session_id() != ""){
 session_start();
+}
 echo getTopNav();
 ?>
 <!--<div id="export">

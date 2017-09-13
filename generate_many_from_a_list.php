@@ -1,5 +1,7 @@
 <?PHP
-session_start();
+if(session_id() != ""){
+    session_start();
+}
 require('session_validation.php');
 ?>
 <!DOCTYPE html>
@@ -26,32 +28,19 @@ require('utility_functions.php');
 <?PHP echo getTopNav(); ?>
 <div class="container" align="left">
 <?php
-if (isset($_POST['max'])) { // this is for one to many puzzle which provides a MAX_COUNT
-    $maxProvided = true;
-    $max = $_POST['max'];
-} else { // this is for one to many
-    $maxProvided = false;
-}
+//if (isset($_POST['max'])) { // this is for one to many puzzle which provides a MAX_COUNT
+//    $maxProvided = true;
+//    $max = $_POST['max'];
+//} else { // this is for one to many
+//    $maxProvided = false;
+//}
 
-if (isset($_POST['puzzle'])) {
-    $input = preg_replace("/\r\n/", ",", validate_input($_POST['puzzle']));
-    // Verify the input value provided meets our requirements
+if (isset($_POST['puzzles'])) {
+    $input = preg_replace("/\r\n/", ",", validate_input($_POST['puzzles']));
     if ($input == '') {
-        // If input is empty, go back to one_to_many page
-        echo '<script type="text/javascript">alert("You did not enter any words. Please try again!"); ';
-        if ($maxProvided) {
-            echo 'window.location.href = "one_to_many_plus.php"</script>';
-        } else {
-            echo 'window.location.href = "one_to_many.php"</script>';
-        }
-    } else if (count(explode(",", trim($input))) > 1 && !isset($_POST['manyFromAList'])) {
-        // If input contains more than one words, go back to previous page
-        echo '<script type="text/javascript">alert("You can only enter one word. Please try again"); ';
-        if ($maxProvided) {
-            echo 'window.location.href = "one_to_many_plus.php"</script>';
-        } else {
-            echo 'window.location.href = "one_to_many.php"</script>';
-        }
+        echo '<script type="text/javascript">alert("You did not enter any words. Please try again!"); window.location.href = "many_from_a_list.php"</script>';
+    } else if (count(explode(",", trim($input))) < 2) {
+        echo '<script type="text/javascript">alert("You must enter two or more words. Please try again"); window.location.href = "many_from_a_list.php"</script>';
     } else {
         // Get the words.
         // Ensure none are whitespace or null.
@@ -116,7 +105,7 @@ if (isset($_POST['puzzle'])) {
                             array_push($image_array, "");
                             if (!$maxProvided) {
                                 $generate = false;
-                                //  break;
+                                  break;
                             }
                         }
                     }

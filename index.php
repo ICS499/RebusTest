@@ -16,7 +16,10 @@
   <title>Rebus</title>
   <body>
     <?PHP
-    session_start();
+    if(!isset($_SESSION))
+    {
+       // session_start();
+    }
     require('session_validation.php');
     ?>
     <?PHP echo getTopNav(); ?>

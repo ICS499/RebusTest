@@ -16,7 +16,9 @@
 <title>Rebus Many-To-One</title>
 <body>
 <?PHP
-session_start();
+if(session_id() != ""){
+    session_start();
+}
 require('session_validation.php');
 ?>
 <?PHP echo getTopNav(); ?>

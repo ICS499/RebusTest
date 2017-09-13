@@ -16,7 +16,9 @@
 <title>Rebus Many from a List</title>
 <body>
 <?PHP
-session_start();
+if(session_id() != ""){
+    session_start();
+}
 require('session_validation.php');
 ?>
 <?PHP echo getTopNav(); ?>
@@ -27,10 +29,7 @@ require('session_validation.php');
 <div>
     <form method="post" action="generate_multiple_puzzles.php">
         <div class="container">
-
-            <!--        <input class="hidden" name="manyFromAList" value="true"/>-->
-
-
+                    <input class="hidden" name="manyFromAList" value="true"/>
             <!--        <div class="inputDiv" style="background-color: #7FFFFF;">-->
             <!---->
             <!---->
@@ -38,15 +37,11 @@ require('session_validation.php');
             <!--                      placeholder="Enter a list of words to generate multiple puzzles"-->
             <!--                      onclick="this.placeholder = ''"></textarea>-->
             <!--        </div>-->
-
-
             <div class="inputDiv" style="background-color: #7FFFFF;"><textarea name="puzzles" id="name-textbox"
                                                                                cols="40" rows="100"
-                                                                               placeholder="Enter list of words to generate multiple puzzles"
+                                                                               placeholder="Enter a list of words to generate multiple puzzles"
                                                                                onclick="this.placeholder = ''"></textarea>
             </div>
-
-
             <br>
             <div style="text-align:center">
                 <input class="main-buttons" type="submit" value="Show me.."/>
