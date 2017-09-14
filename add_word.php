@@ -100,10 +100,10 @@ require('InsertUtil.php');
 
             function AddTableRows() {
                 alert("add rows");
-                // Find a <table> element with id="myTable":
+                 Find a <table> element with id="myTable":
                 var table = document.getElementById("myTable");
 
-                // Create an empty <tr> element and add it to the 1st position of the table:
+                 Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow(git);
             }
 
